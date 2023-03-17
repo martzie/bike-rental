@@ -23,7 +23,7 @@ public class CategoryController {
     @GetMapping("/all")
     public List<Category> getActiveCategories(){
         return getAllCategories().stream()
-                .filter(Category::isActive)
+                .filter(Category::getIsActive)
                 .collect(Collectors.toList());
     }
 

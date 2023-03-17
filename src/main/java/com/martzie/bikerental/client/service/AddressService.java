@@ -1,10 +1,10 @@
 package com.martzie.bikerental.client.service;
 
-import com.martzie.bikerental.client.repository.ClientRepository;
 import com.martzie.bikerental.client.exception.AddressNotFoundException;
 import com.martzie.bikerental.client.exception.ClientNotFoundException;
 import com.martzie.bikerental.client.model.Address;
 import com.martzie.bikerental.client.model.Client;
+import com.martzie.bikerental.client.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

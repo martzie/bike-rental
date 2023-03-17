@@ -1,7 +1,7 @@
 package com.martzie.bikerental.client.controller;
 
-import com.martzie.bikerental.client.model.Client;
 import com.martzie.bikerental.client.controller.dto.ClientDTO;
+import com.martzie.bikerental.client.model.Client;
 
 import java.util.List;
 import java.util.stream.Collectors;

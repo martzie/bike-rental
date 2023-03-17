@@ -1,10 +1,10 @@
 package com.martzie.bikerental.client.service;
 
-import com.martzie.bikerental.client.repository.ClientRepository;
 import com.martzie.bikerental.client.exception.ClientNotFoundException;
 import com.martzie.bikerental.client.exception.IncorrectEmailException;
 import com.martzie.bikerental.client.exception.UserAlreadyExistsException;
 import com.martzie.bikerental.client.model.Client;
+import com.martzie.bikerental.client.repository.ClientRepository;
 import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
