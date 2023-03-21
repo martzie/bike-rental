@@ -2,13 +2,12 @@ package com.martzie.bikerental.client.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Tolerate;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -17,23 +16,24 @@ import java.util.List;
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(unique = true, nullable = false)
+    @NotNull
+    @Size(max=30)
+    @Column(unique = true)
     private String login;
     private String firstName;
     private String lastName;
 
     @Email
-    @Column(unique = true, nullable = false)
+    @NotNull
+    @Column(unique = true)
     private String emailAddress;
-
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
-    @JoinColumn(name = "client_id")
-    private List<Address> addresses = new ArrayList<>();
+    private String city;
+    private String street;
+    private String streetNumber;
+    private String postcode;
 
     @Tolerate
     public Client(){}
