@@ -1,11 +1,10 @@
 package com.martzie.bikerental.client.service;
 
+import com.martzie.bikerental.client.controller.dto.ClientRequest;
 import com.martzie.bikerental.client.exception.ClientNotFoundException;
-import com.martzie.bikerental.client.exception.IncorrectEmailException;
 import com.martzie.bikerental.client.exception.UserAlreadyExistsException;
 import com.martzie.bikerental.client.model.Client;
 import com.martzie.bikerental.client.repository.ClientRepository;
-import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,15 +18,8 @@ public class ClientService {
     private final ClientRepository clientRepository;
 
     public Client addClient(Client client) {
-        if (clientRepository.existsByEmailAddressIgnoreCase(client.getEmailAddress())
-                || clientRepository.existsByLoginIgnoreCase(client.getLogin())){
-            throw new UserAlreadyExistsException();
-        }
-        try {
-            return clientRepository.save(client);
-        } catch (ConstraintViolationException e){
-            throw new IncorrectEmailException(client.getEmailAddress());
-        }
+        checkEmail(client.getEmailAddress());
+        return clientRepository.save(client);
     }
 
     public List<Client> getAllClients() {
@@ -35,19 +27,31 @@ public class ClientService {
     }
 
     public Client findById(long id) {
-        return clientRepository.findById(id).orElseThrow(()-> new ClientNotFoundException(id));
-    }
-    @Transactional
-    public Client updateClient(long id, Client client) {
-        Client persistentClient = clientRepository
-                .findById(id).orElseThrow(() -> new ClientNotFoundException(client.getId()));
-        persistentClient.setEmailAddress(client.getEmailAddress());
-        persistentClient.setFirstName(client.getFirstName());
-        persistentClient.setLastName(client.getLastName());
-        return persistentClient;
+        return clientRepository.findById(id).orElseThrow(() -> new ClientNotFoundException(id));
     }
 
-    public void deleteClient(long id) {
-        clientRepository.deleteById(id);
+    @Transactional
+    public void updateClient(long id, ClientRequest request) {
+        checkEmail(request.getEmailAddress());
+        Client persistentClient = findById(id);
+        persistentClient.setEmailAddress(request.getEmailAddress());
+        persistentClient.setFirstName(request.getFirstName());
+        persistentClient.setLastName(request.getLastName());
+        persistentClient.setCity(request.getCity());
+        persistentClient.setPostcode(request.getPostcode());
+        persistentClient.setStreet(request.getStreet());
+        persistentClient.setPhoneNumber(request.getPhoneNumber());
+    }
+
+    @Transactional
+    public void deactivateClient(long id) {
+        Client deactivatedClient = findById(id);
+        deactivatedClient.setIsActive(false);
+    }
+
+    private void checkEmail(String email) {
+        if (clientRepository.existsByEmailAddressIgnoreCase(email)) {
+            throw new UserAlreadyExistsException();
+        }
     }
 }

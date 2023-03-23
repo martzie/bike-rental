@@ -6,6 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface ClientRepository extends JpaRepository<Client, Long > {
 
     Boolean existsByEmailAddressIgnoreCase(String emailAddress);
-    Boolean existsByLoginIgnoreCase(String login);
 
 }

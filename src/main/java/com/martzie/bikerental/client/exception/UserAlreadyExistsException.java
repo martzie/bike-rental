@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class UserAlreadyExistsException extends RuntimeException{
 
     public UserAlreadyExistsException(){
-        super("User is already registered.");
+        super("Email is already registered.");
     }
 }
