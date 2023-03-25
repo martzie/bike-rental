@@ -1,4 +1,4 @@
-package com.martzie.bikerental.client.controller;
+package com.martzie.bikerental.client.controller.converter;
 
 import com.martzie.bikerental.client.controller.dto.ClientRequest;
 import com.martzie.bikerental.client.controller.dto.ClientResponse;
@@ -7,9 +7,9 @@ import com.martzie.bikerental.client.model.Client;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ClientDtoMapper {
+public class ClientConverter {
 
-    private ClientDtoMapper(){}
+    private ClientConverter(){}
 
     public static Client mapToClientEntity(ClientRequest request) {
         return Client.builder()
@@ -27,17 +27,16 @@ public class ClientDtoMapper {
 
     public static List<ClientResponse> mapToClientResponses(List<Client> clients) {
         return clients.stream()
-                .map(ClientDtoMapper::mapToClientResponse)
+                .map(ClientConverter::mapToClientResponse)
                 .collect(Collectors.toList());
     }
 
-    private static ClientResponse mapToClientResponse(Client client) {
+    public static ClientResponse mapToClientResponse(Client client) {
         return ClientResponse.builder()
                 .id(client.getId())
                 .emailAddress(client.getEmailAddress())
                 .firstName(client.getFirstName())
                 .lastName(client.getLastName())
-                .isActive(client.getIsActive())
                 .build();
     }
 }

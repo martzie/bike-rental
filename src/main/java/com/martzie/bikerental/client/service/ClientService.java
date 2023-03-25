@@ -1,6 +1,8 @@
 package com.martzie.bikerental.client.service;
 
+import com.martzie.bikerental.client.controller.converter.ClientConverter;
 import com.martzie.bikerental.client.controller.dto.ClientRequest;
+import com.martzie.bikerental.client.controller.dto.ClientResponse;
 import com.martzie.bikerental.client.exception.ClientNotFoundException;
 import com.martzie.bikerental.client.exception.UserAlreadyExistsException;
 import com.martzie.bikerental.client.model.Client;
@@ -17,13 +19,15 @@ public class ClientService {
 
     private final ClientRepository clientRepository;
 
-    public Client addClient(Client client) {
-        checkEmail(client.getEmailAddress());
-        return clientRepository.save(client);
+    public ClientResponse addClient(ClientRequest request) {
+        checkEmail(request.getEmailAddress());
+        Client perstistentClient = clientRepository.save(ClientConverter.mapToClientEntity(request));
+        return ClientConverter.mapToClientResponse(perstistentClient);
     }
 
-    public List<Client> getAllClients() {
-        return clientRepository.findAll();
+    public List<ClientResponse> getAllClients() {
+        List<Client> allClients = clientRepository.findAll();
+        return ClientConverter.mapToClientResponses(allClients);
     }
 
     public Client findById(long id) {
@@ -44,14 +48,19 @@ public class ClientService {
     }
 
     @Transactional
-    public void deactivateClient(long id) {
-        Client deactivatedClient = findById(id);
-        deactivatedClient.setIsActive(false);
+    public void removeClient(long id) {
+        Client clientToDelete = findById(id);
+        clientRepository.delete(clientToDelete);
     }
 
     private void checkEmail(String email) {
         if (clientRepository.existsByEmailAddressIgnoreCase(email)) {
             throw new UserAlreadyExistsException();
         }
+    }
+
+    public ClientResponse getClientById(long id) {
+        Client persistentResponse = findById(id);
+        return ClientConverter.mapToClientResponse(persistentResponse);
     }
 }

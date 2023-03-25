@@ -2,7 +2,6 @@ package com.martzie.bikerental.client.controller;
 
 import com.martzie.bikerental.client.controller.dto.ClientRequest;
 import com.martzie.bikerental.client.controller.dto.ClientResponse;
-import com.martzie.bikerental.client.model.Client;
 import com.martzie.bikerental.client.service.ClientService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -20,18 +19,18 @@ public class ClientController {
     private final ClientService clientService;
 
     @PostMapping
-    public Client addClient(@RequestBody @Valid ClientRequest request) {
-        return clientService.addClient(ClientDtoMapper.mapToClientEntity(request));
+    public ClientResponse addClient(@RequestBody @Valid ClientRequest request) {
+        return clientService.addClient(request);
     }
 
     @GetMapping
     public List<ClientResponse> getClients(){
-        return ClientDtoMapper.mapToClientResponses(clientService.getAllClients());
+        return clientService.getAllClients();
     }
 
     @GetMapping(value = "/{id}")
-    public Client getClientById(@PathVariable long id) {
-        return clientService.findById(id);
+    public ClientResponse getClientById(@PathVariable long id) {
+        return clientService.getClientById(id);
     }
 
     @PutMapping(value = "/{id}")
@@ -40,7 +39,7 @@ public class ClientController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public void deactivateClient(@PathVariable long id) {
-        clientService.deactivateClient(id);
+    public void removeClient(@PathVariable long id) {
+        clientService.removeClient(id);
     }
 }
