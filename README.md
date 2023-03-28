@@ -1,6 +1,8 @@
 ## Bike rental
 
-It's the first complex project in my portfolio.
+Bike rental app is the first complex project in my portfolio.   
+It currently provides basic functionalities, mostly CRUD for User, Bikes and Reservation management. 
+Future plans for application development can be found under [TODO section](#to-do).
 
 ### Used technologies
 - Java 17
@@ -13,14 +15,15 @@ It's the first complex project in my portfolio.
 
 docker and docker-compose
 
-
 ### How to use? 
 
 ### How to run? 
 
-### TO DO: 
--[ ] DB schema  
--[ ] Security
+### To Do: 
+-[ ] Create DB schema  
+-[ ] Add application to docker compose 
+-[ ] Extend bikes with photo gallery
+-[ ] Spring Security
 -[ ] Tests
 -[ ] Front-end app
 -[ ] Soft delete of DB records

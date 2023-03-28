@@ -32,7 +32,7 @@ public class ManufacturerController {
         return manufacturerService.getAllManufacturers();
     }
 
-    @DeleteMapping("/{id")
+    @DeleteMapping("/{id}")
     private void removeManufacturer(@PathVariable long id) {
         manufacturerService.removeManufacturer(id);
     }

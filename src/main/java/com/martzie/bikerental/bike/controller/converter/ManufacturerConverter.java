@@ -3,13 +3,14 @@ package com.martzie.bikerental.bike.controller.converter;
 import com.martzie.bikerental.bike.controller.dto.ManufacturerRequest;
 import com.martzie.bikerental.bike.controller.dto.ManufacturerResponse;
 import com.martzie.bikerental.bike.model.Manufacturer;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ManufacturerConverter {
-
-    private ManufacturerConverter(){}
 
     public static Manufacturer mapToManufacturerEntity(ManufacturerRequest request){
         Manufacturer manufacturer = new Manufacturer();

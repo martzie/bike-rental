@@ -3,13 +3,14 @@ package com.martzie.bikerental.client.controller.converter;
 import com.martzie.bikerental.client.controller.dto.ClientRequest;
 import com.martzie.bikerental.client.controller.dto.ClientResponse;
 import com.martzie.bikerental.client.model.Client;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ClientConverter {
-
-    private ClientConverter(){}
 
     public static Client mapToClientEntity(ClientRequest request) {
         return Client.builder()

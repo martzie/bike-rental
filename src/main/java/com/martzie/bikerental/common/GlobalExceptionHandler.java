@@ -16,7 +16,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<List<ClientValidationError>> handleValidationError(MethodArgumentNotValidException e) {
         List<ClientValidationError> errors = e.getBindingResult().getFieldErrors()
                 .stream()
-                .map(ex ->new ClientValidationError(ex.getField(), ex.getRejectedValue(), ex.getDefaultMessage()))
+                .map(ex -> new ClientValidationError(ex.getField(), ex.getRejectedValue(), ex.getDefaultMessage()))
                 .collect(Collectors.toList());
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }

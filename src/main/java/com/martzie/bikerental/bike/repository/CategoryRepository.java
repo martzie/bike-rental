@@ -8,4 +8,5 @@ import java.util.List;
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     List<Category> findByCategoryContaining(String phrase);
+    boolean existsByCategoryIgnoreCase(String category);
 }

@@ -1,10 +1,18 @@
 package com.martzie.bikerental.bike.model;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.Tolerate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
+@Setter
+@Builder
 public class Model {
 
     @Id
@@ -22,6 +30,26 @@ public class Model {
     @JoinColumn(name = "category_id")
     private Category category;
 
-//    private Set<Size> size = new HashSet<>();
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(
+            name = "model_sizes",
+            joinColumns = @JoinColumn(name = "model_id"),
+            inverseJoinColumns = @JoinColumn(name = "size_id")
+    )
+    private List<Size> sizes = new ArrayList<>();
 
+    @Tolerate
+    public Model() {
+        // required by JPA
+    }
+
+    public void addSize(Size size){
+        sizes.add(size);
+        size.getModels().add(this);
+    }
+
+    public void removeSize(Size size){
+        sizes.remove(size);
+        size.getModels().remove(this);
+    }
 }
