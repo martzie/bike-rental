@@ -1,1 +1,27 @@
-# bike-rental
+## Bike rental
+
+It's the first complex project in my portfolio.
+
+### Used technologies
+- Java 17
+- Spring Boot 3.0.4
+- Hibernate 8.0.0
+- PostgreSQL
+- Lombok
+- Swagger (from Springdoc-openapi 2.0.2)
+### Prerequisites 
+
+docker and docker-compose
+
+
+### How to use? 
+
+### How to run? 
+
+### TO DO: 
+-[ ] DB schema  
+-[ ] Security
+-[ ] Tests
+-[ ] Front-end app
+-[ ] Soft delete of DB records
+-[ ] Analysis module for admin
