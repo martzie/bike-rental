@@ -20,11 +20,11 @@ docker and docker-compose
 ### How to run? 
 
 ### To Do: 
--[ ] Create DB schema  
--[ ] Add application to docker compose 
--[ ] Extend bikes with photo gallery
--[ ] Spring Security
--[ ] Tests
--[ ] Front-end app
--[ ] Soft delete of DB records
--[ ] Analysis module for admin
+- [ ] Create DB schema  
+- [ ] Add application to docker compose 
+- [ ] Extend bikes with photo gallery
+- [ ] Spring Security
+- [ ] Tests
+- [ ] Front-end app
+- [ ] Soft delete of DB records
+- [ ] Analysis module for admin
