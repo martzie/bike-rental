@@ -1,28 +1,24 @@
 package com.martzie.bikerental.bike.model;
 
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.Tolerate;
+import lombok.Setter;
 
 @Entity
 @Getter
-@Builder
+@Setter
 public class Bike {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
-    private String manufacturer;
-    private String model;
-    private String size;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "model_id")
+    private Model model;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="category_id")
-    private Category bikeCategory;
-    private boolean isAvailable;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "size_id")
+    private Size size;
 
-    @Tolerate
-    public Bike(){}
 }
