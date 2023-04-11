@@ -11,6 +11,7 @@ Future plans for application development can be found under [TODO section](#to-d
 - PostgreSQL
 - Lombok
 - Swagger (from Springdoc-openapi 2.0.2)
+- Maven 3.8.7
 ### Prerequisites 
 
 docker and docker-compose
