@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Tolerate;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,9 +38,10 @@ public class Model {
             inverseJoinColumns = @JoinColumn(name = "size_id")
     )
     private List<Size> sizes = new ArrayList<>();
+    private BigDecimal price;
 
     @Tolerate
-    public Model() {
+    Model() {
         // required by JPA
     }
 

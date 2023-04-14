@@ -17,9 +17,9 @@ INSERT INTO size VALUES
  (3, 'Full');
 
  INSERT INTO model VALUES
- (1, 'Spectral', 3, 1),
- (2, 'Fritzz', 3, 4),
- (3, 'Topstone', 1, 2);
+ (1, 'Spectral',200, 3, 1),
+ (2, 'Fritzz', 150, 3, 4),
+ (3, 'Topstone',120, 1, 2);
 
 INSERT INTO model_sizes VALUES
 (1, 1),

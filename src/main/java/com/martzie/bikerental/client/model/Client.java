@@ -30,5 +30,7 @@ public class Client {
     private boolean isActive;
 
     @Tolerate
-    public Client(){}
+    Client(){
+        //required by JPA
+    }
 }

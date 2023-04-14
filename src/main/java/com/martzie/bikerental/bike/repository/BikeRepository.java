@@ -26,4 +26,6 @@ public interface BikeRepository extends JpaRepository<Bike, Long> {
                                            Long size,
                                            Long category);
 
+    List<Bike> findByIdIn(List<Long> bikesId);
+
 }
