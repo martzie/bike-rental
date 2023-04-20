@@ -16,13 +16,14 @@ Future plans for application development can be found under [TODO section](#to-d
 
 docker and docker-compose
 
-### How to use? 
+### How to run?
+`docker-compose up` or `./mvnw spring-boot:run` (provided you have a locally running postgres db)
 
-### How to run? 
+### How to use? 
+1. Go to http://localhost:8080/swagger-ui.html
 
 ### To Do: 
-- [ ] Create DB schema  
-- [ ] Add application to docker compose 
+- [ ] Create DB schema
 - [ ] Extend bikes with photo gallery
 - [ ] Spring Security
 - [ ] Tests
