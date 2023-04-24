@@ -22,6 +22,9 @@ docker and docker-compose
 ### How to use? 
 1. Go to http://localhost:8080/swagger-ui.html
 
+### Database relationship diagram
+![db-diagram.png](db-diagram.png)
+
 ### To Do: 
 - [ ] Create DB schema
 - [ ] Extend bikes with photo gallery
